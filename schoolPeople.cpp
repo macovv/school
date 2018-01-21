@@ -1,5 +1,4 @@
 #include <iostream>
-#include <memory>
 #include <iterator>
 #include "schoolPeople.h"
 
@@ -29,9 +28,8 @@ void Student::calculateGPA(int p, int mp){
 
 
 void Student::addGrade(int p, int mp){
-    
-    std::unique_ptr<std::pair<int, int>> pair_ptr(new std::pair<int, int>(p,mp));
-    this->grades.push_back(*pair_ptr);
+    std::pair<int, int> pairr(p, mp);
+    this->grades.push_back(pairr);
     calculateGPA(p, mp);
 }
 
@@ -41,8 +39,8 @@ void Student::addGrade(){
     std::cin >> p;
     std::cout << "Enter maximal number of points:\n";
     std::cin >> mp;
-    std::unique_ptr<std::pair<int, int>> pair_ptr(new std::pair<int, int>(p, mp));
-    this->grades.push_back(*pair_ptr);
+    std::pair<int, int> pairr(p, mp);
+    this->grades.push_back(pairr);
     calculateGPA(p, mp);
 }
 
