@@ -27,7 +27,8 @@ class Student : public Human{
     public:
         Student(std::string n, std::string ln, int id) 
                     : Human(n, ln), sid(id) {};
-        Student(std::string n, std::string ln, int id,                          std::vector<std::pair<int,int>> gr) : Human(n, ln), sid(id), grades(gr) {};
+        Student(std::string n, std::string ln, int id, std::vector<std::pair<int,int>> gr)
+                    : Human(n, ln), sid(id), grades(gr) {};
         ~Student() {};
         void addGrade(int p, int mp);
         void addGrade();
@@ -38,7 +39,6 @@ class Student : public Human{
             calculateGPA(sp);
         }
         friend  std::ostream & operator<<(std::ostream & os, const Student & s){
-            
             return os << "Student id: " << s.sid << " and his/her gpa is: " << s.gpa << std::endl;
         }
 
