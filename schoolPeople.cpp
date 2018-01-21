@@ -45,7 +45,7 @@ void Student::addGrade(){
 }
 
 void Student::printGrades() const{
-   std::cout << "GRADES: \n";
+   std::cout << "GRADES(without super points): \n";
    for(auto it = this->grades.begin(); it!=this->grades.end(); it++){
         std::cout << it->first << "/" << it->second << std::endl;
    }
