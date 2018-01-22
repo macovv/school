@@ -10,8 +10,9 @@ int main(){
     marek.addGrade();
     marek.addGrade(10,20);
     marek.addGrade(20,23);
-    marek+10;
-    marek.GetHumanInfo();
+    marek+3;
+    marek+=5;
+    marek.getHumanInfo();
     marek.printGrades();
     std::cout << marek;
     return 0;
