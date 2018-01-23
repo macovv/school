@@ -37,11 +37,15 @@ class Student : public Human{
         int totalPoints=0;
         int studentPoints=0;
     public:
+        Student();
         Student(std::string n, std::string ln, int id) 
                     : Human(n, ln), sid(id) {};
         Student(std::string n, std::string ln, int id, std::vector<std::pair<int,int>> gr) 
                     : Human(n, ln), sid(id), grades(gr) {};
         ~Student() {};
+        float getGPA(){
+            return this->gpa;
+        }
         void addGrade(int p, int mp);
         void addGrade();
         void getHumanInfo() const;
@@ -59,7 +63,6 @@ class Student : public Human{
             return os << "Student id: " << s.sid << " and his/her gpa is: " 
                       << s.gpa << std::endl;
         }
-
 };
 
 #endif

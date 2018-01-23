@@ -14,6 +14,18 @@ void Human::getHumanInfo() const{
  
 }
 
+Student::Student(){
+    std::string n, ln;
+    std::cout << "Enter student name:\n";
+    std::cin >> n;
+    setName(n);
+    std::cout << "Enter last name: \n";
+    std::cin >> ln;
+    setLName(ln);
+    std::cout << "Enter student id: \n";
+    std::cin >> this->sid;
+}
+
 void Student::getHumanInfo() const{
     Human::getHumanInfo();
     std::cout << "Student GPA: " << this->gpa << std::endl;
