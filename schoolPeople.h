@@ -2,15 +2,16 @@
 #include <string>
 #include <vector>
 #include <utility>
+#include <initializer_list>
 
 #ifndef SCHOOLPEOPLE_H
 #define SCHOOLPEOPLE_H
 
 class Human{
-    private:   
+    private:
         std::string name;
         std::string lastName;
-     public:
+    public:
         Human();
         Human(std::string n, std::string ln) : name(n), lastName(ln) {};
         virtual ~Human() {};
@@ -38,16 +39,17 @@ class Student : public Human{
         int studentPoints=0;
     public:
         Student();
-        Student(std::string n, std::string ln, int id) 
+        Student(std::string n, std::string ln, int id)
                     : Human(n, ln), sid(id) {};
-        Student(std::string n, std::string ln, int id, std::vector<std::pair<int,int>> gr) 
+        Student(std::string n, std::string ln, int id, std::vector<std::pair<int,int>> gr)
                     : Human(n, ln), sid(id), grades(gr) {};
         ~Student() {};
-        float getGPA(){
+        float getGPA() const{
             return this->gpa;
         }
-        void addGrade(int p, int mp);
-        void addGrade();
+        Student& addGrade(int p, int mp);
+        Student& addGrade();
+        void addGrades(std::initializer_list<std::pair<int, int>> gr);
         void getHumanInfo() const;
         void calculateGPA(int p=0, int mp=0);
         void printGrades() const;
@@ -59,10 +61,20 @@ class Student : public Human{
         void operator+=(int sp){
             this->operator+(sp);
         }
-        friend  std::ostream & operator<<(std::ostream & os, const Student & s){ 
-            return os << "Student id: " << s.sid << " and his/her gpa is: " 
+        friend  std::ostream & operator<<(std::ostream & os, const Student & s){
+            return os << "Student id: " << s.sid << " and his/her gpa is: "
                       << s.gpa << std::endl;
         }
 };
+
+class Teacher : public Human{
+        private:
+            std::string subject;
+        public:
+            Teacher(std::string n, std::string ln, std::string sub)
+                        : Human(n, ln), subject(sub) {};
+};
+
+
 
 #endif

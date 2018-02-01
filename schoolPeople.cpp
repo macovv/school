@@ -9,9 +9,9 @@ Human::Human() {
 }
 
 void Human::getHumanInfo() const{
-    std::cout << "Student name: " << this->name << std::endl; 
+    std::cout << "Student name: " << this->name << std::endl;
     std::cout << "Student last name: " << this->lastName << std::endl;
- 
+
 }
 
 Student::Student(){
@@ -39,13 +39,14 @@ void Student::calculateGPA(int p, int mp){
 }
 
 
-void Student::addGrade(int p, int mp){
+Student& Student::addGrade(int p, int mp){
     std::pair<int, int> pairr(p, mp);
     this->grades.push_back(pairr);
     calculateGPA(p, mp);
+    return *this;
 }
 
-void Student::addGrade(){
+Student& Student::addGrade(){
     int p, mp;
     std::cout << "Enter number of scored points:\n";
     std::cin >> p;
@@ -54,6 +55,13 @@ void Student::addGrade(){
     std::pair<int, int> pairr(p, mp);
     this->grades.push_back(pairr);
     calculateGPA(p, mp);
+    return *this;
+
+}
+
+void Student::addGrades(std::initializer_list<std::pair<int, int>> gr){
+    for(auto x: gr)
+        grades.push_back(x);
 }
 
 void Student::printGrades() const{
