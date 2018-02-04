@@ -2,6 +2,7 @@
 #include <iterator>
 #include "schoolPeople.h"
 
+int Student::sids = 1;
 
 Human::Human() {
     this->name = "Null";
@@ -22,8 +23,8 @@ Student::Student(){
     std::cout << "Enter last name: \n";
     std::cin >> ln;
     setLName(ln);
-    std::cout << "Enter student id: \n";
-    std::cin >> this->sid;
+    this->sid = sids;
+    sids++;
 }
 
 void Student::getHumanInfo() const{

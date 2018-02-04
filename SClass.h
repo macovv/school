@@ -8,11 +8,16 @@
 class SClass{
     private:
         std::vector<Student> students;
-        Teacher teacher;
+        std::shared_ptr<Teacher> teacher; //maybe i should keep it as a pointer(shared_ptr)
     public:
-        SClass(std::vector<Student> s, Teacher t)
-                   : students(s), teacher(t) {};
+        SClass(std::vector<Student> s, std::shared_ptr<Teacher> t)
+                    :students(s), teacher(t) {};
+        SClass(const SClass & sc)
+                    : students(sc.students), teacher(sc.teacher) {};
+        SClass(SClass && sc)
+                    : students(std::move(sc.students)), teacher(std::move(sc.teacher)) {};
         void studentsByGpa();
+        void GetSClassInfo() const;
 };
 
 #endif // SCLASS_H_INCLUDED

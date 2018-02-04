@@ -16,14 +16,13 @@ bool comparator(Student & s1, Student & s2){
         return false;
 }
 
-
 int main(){
-    Student marek("Marek", "Jakulski", 1123);
+    Student marek("Marek", "Jakulski");
 
     marek.addGrade(10,20).addGrade(20,23);
     marek+3;
 
-    std::unique_ptr<Student[]> sArr(new Student[3]);
+    std::unique_ptr<Student[]> sArr(new Student[3]); //maybe custom deleter?
 
     sArr[0].addGrades({std::make_pair(10,20),std::make_pair(30,50), std::make_pair(9,11)});    //experimental, playing with C++11
     sArr[0].addGrade(10,30).addGrade(23,25).addGrade(30,30);
@@ -31,8 +30,9 @@ int main(){
     sArr[2].addGrade(24,30).addGrade(8,25).addGrade(17,30);
 
     std::vector<Student> students = {sArr[0], sArr[1], sArr[2], marek};
-    Teacher t("Maria","Kowalska","Matematyka");
+    std::shared_ptr<Teacher> t(new Teacher("Maria","Kowalska","Matematyka"));
     SClass sclass(students, t);
     sclass.studentsByGpa();
+    sclass.GetSClassInfo();
     return 0;
 }

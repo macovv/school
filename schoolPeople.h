@@ -3,9 +3,11 @@
 #include <vector>
 #include <utility>
 #include <initializer_list>
+#include <memory>
 
 #ifndef SCHOOLPEOPLE_H
 #define SCHOOLPEOPLE_H
+
 
 class Human{
     private:
@@ -38,11 +40,13 @@ class Student : public Human{
         int totalPoints=0;
         int studentPoints=0;
     public:
+        static int sids;
+
         Student();
-        Student(std::string n, std::string ln, int id)
-                    : Human(n, ln), sid(id) {};
-        Student(std::string n, std::string ln, int id, std::vector<std::pair<int,int>> gr)
-                    : Human(n, ln), sid(id), grades(gr) {};
+        Student(std::string n, std::string ln)
+                    : Human(n, ln), sid(sids) {sids++;};
+        Student(std::string n, std::string ln, std::vector<std::pair<int, int>> gr)
+                    : Human(n, ln), sid(sids), grades(gr) {sids++;};
         ~Student() {};
         float getGPA() const{
             return this->gpa;
