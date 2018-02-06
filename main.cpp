@@ -31,8 +31,11 @@ int main(){
 
     std::vector<Student> students = {sArr[0], sArr[1], sArr[2], marek};
     std::shared_ptr<Teacher> t(new Teacher("Maria","Kowalska","Matematyka"));
+    std::cout << t.use_count() << std::endl;
     SClass sclass(students, t);
     sclass.studentsByGpa();
     sclass.GetSClassInfo();
+    std::cout << t.use_count() << std::endl;
+
     return 0;
 }
